@@ -1,0 +1,13 @@
+Input:
+GAGG
+GGGG
+GGGA
+CAGG
+AGGG
+GGAG
+Output:
+AGG -> GGG
+CAG -> AGG
+GAG -> AGG
+GGA -> GAG
+GGG -> GGA,GGG

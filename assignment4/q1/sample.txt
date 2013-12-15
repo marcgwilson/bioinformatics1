@@ -1,0 +1,9 @@
+Input
+5
+CAATCCAAC
+Output
+AATCC
+ ATCCA
+ CAATC
+ CCAAC
+ TCCAA
