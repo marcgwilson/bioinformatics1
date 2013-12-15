@@ -7,7 +7,7 @@ def build_node_dict(data):
     nodes = {}
     for d in data:
         d = d.strip()
-        if 'Output' in d:
+        if d == 'Output':
             break
         else:
             node_data = d.split(' -> ')

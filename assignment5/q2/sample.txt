@@ -1,0 +1,9 @@
+Input
+CTT -> TTA
+ACC -> CCA
+TAC -> ACC
+GGC -> GCT
+GCT -> CTT
+TTA -> TAC
+Output
+GGCTTACCA
