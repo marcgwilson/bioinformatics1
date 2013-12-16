@@ -30,9 +30,9 @@ def odd_degrees(data):
     for k in data:
         # Determine the degree of the starting nodes
         if k not in nodes:
-            nodes[int(k)] = len(data[k])
+            nodes[k] = len(data[k])
         else:
-            nodes[int(k)] = nodes[int(k)] + len(data[k])
+            nodes[k] = nodes[k] + len(data[k])
         # Determine the degree of the ending nodes
         for n in data[k]:
             if n not in nodes:
@@ -40,7 +40,7 @@ def odd_degrees(data):
             else:
                 nodes[n] = nodes[n] + 1
 
-    return [(int(k), int(nodes[k])) for k in nodes if nodes[k] % 2 == 1]
+    return [(k, nodes[k]) for k in nodes if nodes[k] % 2 == 1]
 
 
 def shift(l, n):
@@ -53,33 +53,19 @@ def main():
     data = data_file.readlines()
 
     edges = build_node_dict(data[1:])
-    # degrees = odd_degrees(edges)
+    degrees = odd_degrees(edges)
 
-    # print edges[1630]
-    # print edges[1587]
 
-    # print degrees
-    # return
+    if degrees[0][1] == 1:
+        terminal_node = degrees[0][0]
+        edges[terminal_node] = [degrees[1][0]]
+    else:
+        terminal_node = degrees[1][0]
+        edges[terminal_node] = [degrees[0][0]]
 
-    # print 'edges before: %s\n\n\n' % edges
-    # if degrees[0][0] not in edges:
-    #     terminal_node = degrees[0][0]
-    #     edges[degrees[0][0]] = [degrees[1][0]]
-    # else:
-    #     terminal_node = degrees[1][0]
-    #     edges[degrees[1][0]] = [degrees[0][0]]
-
-    # print 'edges[1630]: %s' % edges[int(1630)]
-    # # if degrees[0][1] == 1:
-    # #     terminal_node = degrees[0][0]
-    # #     edges[terminal_node] = [degrees[1][0]]
-    # # else:
-    # #     terminal_node = degrees[1][0]
-    # #     edges[terminal_node] = [degrees[0][0]]
-
-    # print 'degrees: %s' % degrees
-    # print 'terminal_node: %s' % terminal_node
-
+    print 'degrees: %s' % degrees
+    print 'terminal_node: %s' % terminal_node
+    print 'edges: %s' % edges
 
     edges_list = edges.items()
 
@@ -124,13 +110,13 @@ def main():
     # Find the index of our terminal node
 
     for i in range(len(path)):
-        if path[i][0] == 1630:
+        if path[i][0] == terminal_node:
             terminal_index = i
             break
 
     path = shift(path, terminal_index)
     # Give result an initial value, then iterate over the edges and append p[1]
-    result =  [str(path[0][0])] # []
+    result =  [] #[str(path[0][0])]
 
     for p in path:
         result.append(str(p[1]))
